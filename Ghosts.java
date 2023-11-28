@@ -1,19 +1,3 @@
-/**
- * Ghost Class
- * 
- * Available functions (see Assignment document for explanations on what each function does):
- * treeFront, treeAbove, treeBelow, treeToLeft, treeToRight,
- * getDirection, setDirection,
- * move,
- * isScared,
- * animate, animateDead, animateScared,
- * getClara, getGhostHealer,
- * isAboveMe, isBelowMe, isToMyLeft, isToMyRight,
- * makeClaraDead,
- * playGhostEatenSound,
- * isPacmanIntroStillPlaying,
- * wrapAroundWorld
- */
 class Ghost extends Character
 {
 
@@ -36,15 +20,15 @@ class Ghost extends Character
     {
         // condition to check if the intro is stil playing and game is not over
         // condition to check if the ghosts are not scared and are not dead
-        // ghosts will chase and kill clara
+        // ghosts will chase and kill Pacman
         if ( !isPacmanIntroStillPlaying() && !isTheGameOver )
         {
             if ( !isScared() && !areTheGhostsDead) 
             {
-                timeToChaseAndKillClara();
+                timeToChaseAndKillPacman();
             }
 
-            // condition to check if ghosts are scared and are still alive, once Clara
+            // condition to check if ghosts are scared and are still alive, once Pacman
             // eats a mushroom they will run away
             if (isScared() && !areTheGhostsDead)
             {
@@ -61,22 +45,22 @@ class Ghost extends Character
     
     }
 
-    //method to chase and kill Clara
-    void timeToChaseAndKillClara()
+    //method to chase and kill Pacman
+    void timeToChaseAndKillPacman()
     {
-        leaveHomeSearchForClara();
+        leaveHomeSearchForPacman();
         moveAcrossTheWorld();
         animateGhostsMovement();
 
-        if ( intersects(getClara()) )
+        if ( intersects(getPacman()) )
         {
-            makeClaraDead();
+            makePacmanDead();
             isTheGameOver = true;
         }
     }
 
     // method for when ghosts leave their home
-    void leaveHomeSearchForClara()
+    void leaveHomeSearchForPacman()
     {
         if ( rebirthingOrigin )
         {
@@ -92,7 +76,7 @@ class Ghost extends Character
 
             if ( ghostsAtRowIntersection() || ghostsAtColumnIntersection() )
             {
-                directionsToChaseClara();
+                directionsToChasePacman();
             }
         }
     }
@@ -191,8 +175,8 @@ class Ghost extends Character
     }
 
 
-    // the ghosts will decide which way is the best way to chase clara
-    void directionsToChaseClara()
+    // the ghosts will decide which way is the best way to chase Pacman
+    void directionsToChasePacman()
     {
     if ( !treeToLeft() )
     {
@@ -215,16 +199,16 @@ class Ghost extends Character
     }
     }
     
-    // method for ghosts to act scared and run away when clara eats a mushroom
+    // method for ghosts to act scared and run away when Pacman eats a mushroom
     void ghostAreScaredAndNeedToRunAway()
     {
         animateScared();
         isScared();
         moveAroundTheMap();
 
-        // condition to check if ghosts and clara intersect while ghosts are scared
+        // condition to check if ghosts and Pacman intersect while ghosts are scared
         // ghosts will die and return to the healer position
-        if ( intersects(getClara()) )
+        if ( intersects(getPacman()) )
         {
             playGhostEatenSound();
             areTheGhostsDead = true;
