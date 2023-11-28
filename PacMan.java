@@ -1,22 +1,3 @@
-/**
- * pacman
- * 
- * Available functions (see Assignment document for explanations on what each function does):
- * treeFront, ghostWallFront,
- * getDirection, setDirection,
- * move,
- * makeScared, isScared,
- * animate, animateDead, 
- * onLeaf, removeLeaf, 
- * onMushroom, removeMushroom,
- * allLeavesEaten, 
- * isPacmanDead,
- * playPacmanDieSound, isPacmanDieSoundStillPlaying,
- * playLeafEatenSound,
- * playPacmanIntro, isPacmanIntroStillPlaying,
- * wrapAroundWorld,
- * getCurrentLevelNumber, advanceToLevel
- */
 class MyPacman extends Pacman
 {
     // Making and Adding Levels\"
